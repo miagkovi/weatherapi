@@ -15,36 +15,45 @@
 	<div class="container">
 
 		<header>
-			<div class="row">
-				<div class="col-xs-12 logo">
-					<img src="img/weatherapi_logo.svg" alt="WeatherAPI Logo">
+
+			<nav class="navbar navbar-default">
+				<div class="navbar-header logo">
+					<a class="navbar-brand" href="#">
+						<img alt="WeatherAPI Logo" src="img/weatherapi_logo.svg">
+					</a>
+					<p class="navbar-text">WeatherAPI</p>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="City">
+						</div>
+						<button type="submit" class="btn btn-primary">Forecast</button>
+					</form>
 				</div>
-			</div>
+			</nav>
+
 		</header>
 
 		<div class="data" ng-controller="WeatherController">
 			<div class="row">
 
-			<div class="col-xs-12 text-center">Dnipro</div>
-			<div class="col-xs-12 text-center">7 days forecast</div>
+			<div class="col-xs-12 text-center">
+				{{weatherData.cnt}} days forecast in {{weatherData.city.name}}, {{weatherData.city.country}}
+			</div>
 
 				<div class="col-xs-12" ng-repeat="day in weatherData.list">
 					<div class="day row">
 
-						<div class="date col-xs-3 text-center">
+						<div class="date col-xs-4 text-center">
 							{{day.dt | secondsToDateTime | date : "MMM dd EEEE"}}
 						</div>
 
-						<div class="icon col-xs-3 text-center">
+						<div class="icon col-xs-4 text-center">
 							<img ng-src="http://openweathermap.org/img/w/{{day.weather[0].icon}}.png">
-						</div>
-
-						<div class="temp col-xs-3 text-center">
-							{{day.temp.day | number : 0}}&deg;C
-						</div>
-
-						<div class="main col-xs-3 text-center">
 							{{day.weather[0].main}}
+						</div>
+
+						<div class="temp col-xs-4 text-center">
+							{{day.temp.min | number : 0}}&deg;C / {{day.temp.max | number : 0}}&deg;C
 						</div>
 
 					</div>
@@ -58,7 +67,7 @@
 
 		<footer>
 			<div class="row">
-				<div class="col-xs-12 text-center">Work with <a href="http://api.openweathermap.org/">openweathermap.org</a> API</div>
+				<div class="col-xs-12 text-center">Work with <a href="http://openweathermap.org/api">openweathermap.org</a> API</div>
 				<div class="col-xs-12 text-center">- <a href="https://github.com/miagkovi">miagkovi</a> @ 2016 -</div>
 			</div>
 		</footer>
