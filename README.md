@@ -1,3 +1,7 @@
-# weatherapi
-weather app
-# training application
+# weatherAPI
+* AngularJS 1.x
+* RWD
+* http://openweathermap.org/ API
+* Twitter Bootstrap
+* jQuery
+* SVG
