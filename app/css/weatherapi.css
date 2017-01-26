@@ -1,3 +1,7 @@
+* {
+  transition: all .5s;
+}
+
 body {
   font-family: 'Raleway', sans-serif;
 }

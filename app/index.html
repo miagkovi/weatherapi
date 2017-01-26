@@ -6,7 +6,7 @@
 	<meta name="author" content="miagkovi">
 	<meta name="github" content="https://github.com/miagkovi">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<link rel="icon" href="favicon.ico">
 	<link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet">
 	<!--[if IE]><link rel="shortcut icon" href="favicon.ico"><![endif]-->
@@ -18,7 +18,7 @@
 
 <body>
 
-	<div class="container">
+	<div class="container" ng-controller="WeatherController">
 
 		<header>
 
@@ -36,12 +36,21 @@
 					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a href="#Dnipro">Dnipro</a></li>
-							<li><a href="#Kyiv">Kyiv</a></li>
-							<li><a href="#Sudac">Sudak</a></li>
-							<li><a href="#Moscow">Moscow</a></li>
-							<li><a href="#Nahodka">Nahodka</a></li>
-							
+							<li ng-class="{'active': 1 === selectedIndex}" data-city_id="709930" ng-click="itemClicked(1)">
+								<a ng-click="changeCity(709930)" href="#Dnipro">Dnipro</a>
+							</li>
+							<li ng-class="{'active': 2 === selectedIndex}" data-city_id="703448" ng-click="itemClicked(2)">
+								<a ng-click="changeCity(703448)" href="#Kiev">Kiev</a>
+							</li>
+							<li ng-class="{'active': 3 === selectedIndex}" data-city_id="692315" ng-click="itemClicked(3)">
+								<a ng-click="changeCity(692315)" href="#Sudak">Sudak</a>
+							</li>
+							<li ng-class="{'active': 4 === selectedIndex}" data-city_id="524901" ng-click="itemClicked(4)">
+								<a ng-click="changeCity(524901)" href="#Moscow">Moscow</a>
+							</li>
+							<li ng-class="{'active': 5 === selectedIndex}" data-city_id="2019528" ng-click="itemClicked(5)">
+								<a href="#Nakhodka" ng-click="changeCity(2019528)">Nakhodka</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -49,7 +58,7 @@
 
 		</header>
 
-		<div class="forecast" ng-controller="WeatherController">
+		<div class="forecast">
 
 			<div class="row forecast__city">
 				<div class="col-lg-12 col-xs-12 text-center">
@@ -61,17 +70,17 @@
 				<div class="col-1-of-7 col-xs-12" ng-repeat="day in data.list track by $index">
 					<div class="forecast__main-info__day row" data-index="{{$index}}" ng-click="applyIndex($index)" ng-class="{'well well-sm': $index === index}">
 
-						<div class="forecast__main-info__date col-lg-12 col-xs-4 text-center">
-								{{day.dt | secondsToDateTime | date : "dd MMM EEE"}}
+						<div class="forecast__main-info__date col-lg-12 col-sm-4 col-xs-4 text-center">
+								<h4>{{day.dt | secondsToDateTime | date : "dd MMM EEE"}}</h4>
 						</div>
 
-						<div class="forecast__main-info__icon col-lg-12 col-xs-4 text-center">
+						<div class="forecast__main-info__icon col-lg-12 col-sm-4 col-xs-3 text-center">
 								<img ng-src="http://openweathermap.org/img/w/{{day.weather[0].icon}}.png">
 								{{day.weather[0].main}}
 						</div>
 
-						<div class="forecast__main-info__temp col-lg-12 col-xs-4 text-center">
-								{{day.temp.min | number : 0}}&#x2103; / {{day.temp.max | number : 0}}&#x2103;
+						<div class="forecast__main-info__temp col-lg-12 col-sm-4 col-xs-5 text-center">
+								<h4>{{day.temp.min | number : 0}}&#x2103; / {{day.temp.max | number : 0}}&#x2103;</h4>
 						</div>
 
 					</div>
@@ -83,66 +92,49 @@
 						<div class="row">
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 								<!-- <p class="text-center">{{data.city.name}}, {{data.city.country}}</p> -->
-								<p class="text-center">{{data.list[index].dt | secondsToDateTime | date : "dd MMMM EEEE"}}</p>
+								<h3 class="text-center">{{data.list[index].dt | secondsToDateTime | date : "dd MMMM EEEE"}}</h3>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Night:</strong></p>
-								<p class="text-center">{{data.list[index].temp.night | number : 0}}&#x2103;</p>
+								<h4 class="text-center">{{data.list[index].temp.night | number : 0}}&#x2103;</h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Morning:</strong></p>
-								<p class="text-center">{{data.list[index].temp.morn | number : 0}}&#x2103;</p>
+								<h4 class="text-center">{{data.list[index].temp.morn | number : 0}}&#x2103;</h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Day:</strong></p>
-								<p class="text-center">{{data.list[index].temp.day | number : 0}}&#x2103;</p>
+								<h4 class="text-center">{{data.list[index].temp.day | number : 0}}&#x2103;</h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Evening:</strong></p>
-								<p class="text-center">{{data.list[index].temp.eve | number : 0}}&#x2103;</p>
+								<h4 class="text-center">{{data.list[index].temp.eve | number : 0}}&#x2103;</h4>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-								<img class="center-block" ng-src="http://openweathermap.org/img/w/{{data.list[index].weather[0].icon}}.png">
-								<p class="text-center">{{data.list[index].weather[0].description}}</p>
+								<!-- <h3 class="text-center">{{data.list[index].weather[0].description}}</h3> -->
+								<!-- <img class="center-block" ng-src="http://openweathermap.org/img/w/{{data.list[index].weather[0].icon}}.png"> -->
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Pressure:</strong></p>
-								<p class="text-center">{{data.list[index].pressure}} hPa</p>
+								<h4 class="text-center">{{data.list[index].pressure}} hPa</h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Humidity:</strong></p>
-								<p class="text-center">{{data.list[index].humidity}}%</p>
+								<h4 class="text-center">{{data.list[index].humidity}}%</h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Wind speed:</strong></p>
-								<p class="text-center">{{data.list[index].speed}} m/s</p>
+								<h4 class="text-center">{{data.list[index].speed}} m/s</h4>
 							</div>
 							<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3">
 								<p class="text-center"><strong>Clouds:</strong></p>
-								<p class="text-center">{{data.list[index].clouds}}%</p>
+								<h4 class="text-center">{{data.list[index].clouds}}%</h4>
 							</div>
 						</div>
-						
-						
-						<!-- <p><strong>Temp night:</strong> {{data.list[index].temp.night | number : 0}}&#x2103;</p> -->
-						<!-- <p><strong>Temp morn:</strong> {{data.list[index].temp.morn | number : 0}}&#x2103;</p> -->
-						<!-- <p><strong>Temp day:</strong> {{data.list[index].temp.day | number : 0}}&#x2103;</p> -->
-						<!-- <p><strong>Temp eve:</strong> {{data.list[index].temp.eve | number : 0}}&#x2103;</p> -->
 
-						<!-- <p><strong>Pressure:</strong> {{data.list[index].pressure}}hPa</p> -->
-						<!-- <p><strong>Humidity:</strong> {{data.list[index].humidity}}%</p> -->
-
-						<!-- <p>{{data.list[index].weather[0].description}}</p> -->
-						<!-- <img ng-src="http://openweathermap.org/img/w/{{data.list[index].weather[0].icon}}.png"> -->
-
-						<!-- <p><strong>Speed:</strong> {{data.list[index].speed}}m/s</p> -->
-						<!-- <p><strong>Clouds:</strong> {{data.list[index].clouds}}%</p> -->
-						<!-- <p><strong>Temp min:</strong> {{data.list[index].temp.min | number : 0}}&#x2103;</p> -->
-						<!-- <p><strong>Temp max:</strong> {{data.list[index].temp.max | number : 0}}&#x2103;</p> -->
 						<!-- <p><strong>Degrees:</strong> {{data.list[index].deg}}</p> -->
-						<!-- <p>{{data.list[index].weather[0].main}}</p> -->
 						<!-- <p><strong>Snow:</strong> {{data.list[index].snow}}</p> -->
 
 					</div>
