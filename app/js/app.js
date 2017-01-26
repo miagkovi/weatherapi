@@ -1,8 +1,12 @@
 var app = angular.module('WeatherApp', []);
 
 app.controller('WeatherController', ['$scope', 'weather', function($scope, weather){
+	$scope.index = 0;
+	$scope.applyIndex = function(index) {
+		$scope.index = index;
+	}
 	weather.success(function(data){
-		$scope.weatherData = data;
+		$scope.data = data;
 	});
 }]);
 

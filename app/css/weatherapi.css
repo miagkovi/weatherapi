@@ -1,7 +1,55 @@
-.logo img {
-	height: 50px;
+body {
+  font-family: 'Raleway', sans-serif;
 }
 
-.navbar-brand {
-	padding: 0px 10px 0px 10px;
+.logo {
+  width: 3.5em;
+}
+
+.forecast__city {
+
+}
+
+.forecast__main-info__day {
+    cursor: pointer;
+}
+
+.forecast__main-info {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.forecast__main-info__day,
+.forecast__main-info__date,
+.forecast__main-info__temp {
+
+}
+
+.forecast__full-info {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .col-1-of-7 {
+    width: 14.28571428571429%;
+  }
 }
